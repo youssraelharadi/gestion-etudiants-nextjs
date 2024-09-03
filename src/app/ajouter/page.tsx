@@ -18,7 +18,7 @@ export default function AddStudent() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/test', {
+      const response = await fetch('/api/ajouter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,8 +29,8 @@ export default function AddStudent() {
       if (response.ok) {
         setSuccessMessage('Étudiant ajouté avec succès!');
         setTimeout(() => {
-          router.push('/accueil'); // Redirection après ajout
-        }, 2000); // Attendre 2 secondes avant la redirection
+          router.push('/accueil'); 
+        }, 2000); 
       } else {
         console.error('Erreur lors de l\'ajout de l\'étudiant');
       }
