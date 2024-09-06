@@ -10,7 +10,7 @@ export default function AddStudent() {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [imageUrl, setImageUrl] = useState('');  
+  const [imageUrl, setImageUrl] = useState('');  // Champ pour l'URL de l'image
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -24,7 +24,7 @@ export default function AddStudent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, age, address, email, phone, imageUrl }), 
+        body: JSON.stringify({ name, age, address, email, phone, imageUrl }),  // Inclure imageUrl
       });
 
       if (response.ok) {
