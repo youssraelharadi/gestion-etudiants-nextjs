@@ -10,6 +10,7 @@ export default function AddStudent() {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [imageUrl, setImageUrl] = useState('');  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -23,7 +24,7 @@ export default function AddStudent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, age, address, email, phone }),
+        body: JSON.stringify({ name, age, address, email, phone, imageUrl }), 
       });
 
       if (response.ok) {
@@ -96,6 +97,16 @@ export default function AddStudent() {
               id="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="imageUrl" className="block text-gray-700">Image URL</label>
+            <input
+              type="text"
+              id="imageUrl"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
               className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
             />
           </div>

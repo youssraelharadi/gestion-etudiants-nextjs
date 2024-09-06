@@ -1,4 +1,3 @@
-
 import { PrismaClient, Student } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -6,17 +5,18 @@ const prisma = new PrismaClient();
 
 interface AddStudentRequest {
   name: string;
-  age?: number; 
-  address?: string; 
-  email?: string; 
-  phone?: string; 
+  age?: number;
+  address?: string;
+  email?: string;
+  phone?: string;
+  imageUrl?: string; // Nouveau champ pour l'image
 }
 
 type Data = Student | { error: string };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === 'POST') {
-    const { name, age, address, email, phone }: AddStudentRequest = req.body;
+    const { name, age, address, email, phone, imageUrl }: AddStudentRequest = req.body;
 
     if (!name) {
       return res.status(400).json({ error: 'Name is required' });
@@ -26,10 +26,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       const newStudent = await prisma.student.create({
         data: {
           name,
-          age: age ?? null, 
-          address: address ?? null, 
-          email: email ?? null, 
-          phone: phone ?? null, 
+          age: age ?? null,
+          address: address ?? null,
+          email: email ?? null,
+          phone: phone ?? null,
+          imageUrl: imageUrl ?? null, // Ajout de l'image à la création
         },
       });
       res.status(201).json(newStudent);
